@@ -1,0 +1,2 @@
+// lists all documents with specification
+db.school.find({name: "Holberton school"})
