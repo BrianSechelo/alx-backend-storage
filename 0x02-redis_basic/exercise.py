@@ -4,7 +4,7 @@ Doc Module
 """
 import redis
 import uuid
-from typing import Union
+from typing import Union, Callable, Optional
 class Cache:
     """ class documentation """
     def  __init__(self):
@@ -16,3 +16,19 @@ class Cache:
         keyx = str(uuid.uuid4())
         self._redis.set(keyx, data)
         return keyx
+
+    def get(self, key: string, fn: optional[callable] = None
+            ) -> Union[str, bytes, int,float]:
+         """doc doc method"""
+         value = self._redis.get(key)
+          if fn:
+            value = fn(value)
+        return value
+
+     def get_str(self, key: str) -> str:
+        """doc doc method"""
+        return self.get(key, fn=str)
+
+    def get_int(self, key: str) -> int:
+        """doc doc method"""
+        return self.get(key, fn=int)
